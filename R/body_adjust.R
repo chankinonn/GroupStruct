@@ -9,6 +9,7 @@
 #'
 #' @param data Path to the input file
 #' @return Returns log-transformed and adjusted data
+#' @import dplyr
 #' @export
 
 body_adjust <- function(data){
