@@ -1,14 +1,18 @@
 #' Allometric adjustment of morphometric characters to correct for intraspecific
-#' ontogenetic variation.
+#' ontogenetic variation
 #'
 #' This function assumes that each Operational Taxonomic
-#' Unit represents a distinct species. The input file is data frame in csv format. The firt column contains OTU identifiers, followed by
-#' morphological characters. No other data should be included in the data frame.
-#' Singleton OTU's and juvenile measurements should be exlucded.
+#' Unit represents a distinct species. The input file is a data frame in csv format.
+#' The firt column contains species identifiers, followed by
+#' morphological characters. No other data should be included in the data frame and NA values are not allowed.
+#' Singleton species and juvenile measurements should be excluded. The function uses
+#' the following allometric equation: Xadj = log(X)-B[log(SVL)-log(SVLmean)], where Xadj = Adjusted value for character X;
+#' X = raw/unadjusted value for character X; B = unstandardized regression coefficient for X against SVL;
+#' SVL = measured SVL; SVLmean = mean SVL for the species.
 #'
 #'
-#' @param data Path to the input file
-#' @return Returns log-transformed and adjusted data
+#' @param data csv file with species identifiers in the first column, followed by morphological characters, each in in a separate column. Singleton species and missing data are not allowed
+#' @return Returns log-transformed and body-size adjusted data in a table called outfile.csv
 #' @import dplyr
 #' @export
 
