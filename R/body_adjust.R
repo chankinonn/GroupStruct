@@ -43,6 +43,6 @@ body_adjust <- function(data){
   all_combined <- cbind(SVL=log(data$SVL), do.call(rbind, finalmatrix)) ### Combine results from loop and bind the column "SVL"
   final_adjusted <- data.frame(cbind(Species=data[1], all_combined)) ### Bind the column "Species" to the final dataset
   write.csv(final_adjusted, "outfile.csv", row.names = FALSE)
-
+  print(final_adjusted)
 }
 

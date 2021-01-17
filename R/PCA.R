@@ -33,5 +33,5 @@ GS_pca <- function(data){
   eigen <- pca$sdev^2 #Extract eigenvalues
   sum <- rbind(sum, eigen, loadings) #Combine eigenvalues, loadings, and summary stats into single table
   write.csv(sum, "PCA_summary.csv")
-
+  print(scores)
 }
