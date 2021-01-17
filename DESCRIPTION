@@ -10,5 +10,7 @@ License: What license is it under?
 Encoding: UTF-8
 LazyData: true
 Imports: 
-    dplyr (>= 0.8.5)
+    dplyr,
+    ggplot2,
+    gridExtra
 RoxygenNote: 7.1.1
