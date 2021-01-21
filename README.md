@@ -3,10 +3,12 @@ GroupStruct contains tools for analyzing and visualizing morphological and DNA s
 Please post questions and bug reports to groupstruct@googlegroups.com
 
 # INSTALLATION
+```
 if (!requireNamespace("devtools", quietly = TRUE))
     install.packages("devtools")
 
 devtools::install_github("chankinonn/GroupStruct")
+```
 
 # CITATION
 Kin Onn Chan (2021). GroupStruct (R package). https://github.com/chankinonn/GroupStruct
