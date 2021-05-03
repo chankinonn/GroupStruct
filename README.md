@@ -13,7 +13,9 @@ devtools::install_github("chankinonn/GroupStruct")
 # FUNCTIONS
 Input data should be in csv format and arranged as follow:
 
-First colum = Population identifier; second colum = Body size measurement such as snout-vent-length (SVL); third colum onwards = other morphometric characters.
+1st colum = Population identifier\
+2nd colum = Body size measurement (e.g. snout-vent-length, SVL)\
+3rd colum onwards = other morphometric characters.
 
 Example:
 
