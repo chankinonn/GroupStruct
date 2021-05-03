@@ -30,12 +30,12 @@ Singletons, juvenile measurements, and missing data should not be included
 ## Allometric adjustment of morphological characters
 The `body_adjust()` function uses an allometric growth equation to adjust for ontogenetic variation among **populations** within a species, i.e. **intraspecific variation**. Hence, this function should be applied separately for different species. The function uses the following allometric equation: *X*<sub>adj</sub> = log(*X*)-*B*[log(SVL)-log(SVL<sub>mean</sub>)], where *X*<sub>adj</sub> = Adjusted value for character *X*; *X* = raw/unadjusted value for character *X*; *B* = unstandardized regression coefficient for *X* against SVL; SVL = measured SVL; SVL<sub>mean</sub> = mean SVL for all populations.
 
-Note that each population will have its own *B* and SVL<sub>mean</sub> is the average SVL of all **populations** included in the dataset.
+Note that each population will have its own *B*, while SVL<sub>mean</sub> is the average SVL of all **populations** included in the dataset.
 
 This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism. 
 
-Example:
-`m <- read.csv("foo.csv")
+Example:\
+`m <- read.csv("foo.csv")\
 body_adjust(m)`
 
 ## PCA
