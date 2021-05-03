@@ -8,18 +8,23 @@ ontogenetic variation}
 body_adjust(data)
 }
 \arguments{
-\item{data}{csv file with species identifiers in the first column, followed by morphological characters, each in in a separate column. Singleton species and missing data are not allowed}
+\item{data}{csv file with population identifiers in the first column, followed by body legnth measurement (e.g. snout-vent-length) in the 2nd column. Other morphometric measurements are contained in the third column onwards. Singletons (only one sample per population) and missing data are not allowed}
 }
 \value{
 Returns log-transformed and body-size adjusted data in a table called outfile.csv
 }
 \description{
-This function assumes that each Operational Taxonomic
-Unit represents a distinct species. The input file is a data frame in csv format.
-The first column contains species identifiers, followed by
-morphological characters. No other data should be included in the data frame and NA values are not allowed.
-Singleton species and juvenile measurements should be excluded. The function uses
-the following allometric equation: Xadj = log(X)-B[log(SVL)-log(SVLmean)], where Xadj = Adjusted value for character X;
-X = raw/unadjusted value for character X; B = unstandardized regression coefficient for X against SVL;
-SVL = measured SVL; SVLmean = mean SVL for the species.
+This function uses an allometric growth equation to adjust for ontogenetic variation
+among populations within a species, i.e. intraspecific variation. Hence, this function
+should be applied separately for different species. The function uses the following allometric
+equation: Xadj = log(X)-B[log(SVL)-log(SVLmean)], where Xadj
+= Adjusted value for character X; X = raw/unadjusted value for character X; B =
+unstandardized regression coefficient for X against SVL; SVL = measured SVL; SVLmean =
+mean SVL for all populations.
+}
+\details{
+Note that each population will have its own B and SVLmean is the average SVL of all populations
+included in the dataset.
+
+This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism.
 }

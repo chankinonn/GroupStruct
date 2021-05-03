@@ -4,7 +4,7 @@
 #' and a summary table
 #'
 #'
-#' @param data csv file with species identifiers in the first column, followed by morphological characters, each in in a separate column.
+#' @param data csv file with OTU identifiers in the first column, followed by morphological characters, each in in a separate column.
 #' @return Returns a summary table called PCA_summary.csv that includes eigenvalues and PCA loadings in addition
 #'  to PCA plots of the first three PC's
 #' @import ggplot2 gridExtra

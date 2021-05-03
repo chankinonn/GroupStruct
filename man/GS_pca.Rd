@@ -7,7 +7,7 @@
 GS_pca(data)
 }
 \arguments{
-\item{data}{csv file with species identifiers in the first column, followed by morphological characters, each in in a separate column.}
+\item{data}{csv file with OTU identifiers in the first column, followed by morphological characters, each in in a separate column.}
 }
 \value{
 Returns a summary table called PCA_summary.csv that includes eigenvalues and PCA loadings in addition
