@@ -8,7 +8,7 @@ ontogenetic variation}
 body_adjust(data)
 }
 \arguments{
-\item{data}{csv file with population identifiers in the first column, followed by body legnth measurement (e.g. snout-vent-length) in the 2nd column. Other morphometric measurements are contained in the third column onwards. Singletons (only one sample per population) and missing data are not allowed}
+\item{data}{csv file with population identifiers in the 1st column, followed by body legnth measurement (e.g. snout-vent-length) in the 2nd column. Other morphometric measurements are contained in the 3rd column onwards. Singletons (only one sample per population) and missing data are not allowed}
 }
 \value{
 Returns log-transformed and body-size adjusted data in a table called outfile.csv
@@ -27,4 +27,8 @@ Note that each population will have its own B and SVLmean is the average SVL of 
 included in the dataset.
 
 This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism.
+}
+\examples{
+m <- read.csv("foo.csv") ## foo.csv = raw measurements
+body_adjust(m)
 }
