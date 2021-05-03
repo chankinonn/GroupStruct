@@ -3,7 +3,7 @@
 #'
 #' This function assumes that each Operational Taxonomic
 #' Unit represents a distinct species. The input file is a data frame in csv format.
-#' The firt column contains species identifiers, followed by
+#' The first column contains species identifiers, followed by
 #' morphological characters. No other data should be included in the data frame and NA values are not allowed.
 #' Singleton species and juvenile measurements should be excluded. The function uses
 #' the following allometric equation: Xadj = log(X)-B[log(SVL)-log(SVLmean)], where Xadj = Adjusted value for character X;
