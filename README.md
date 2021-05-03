@@ -37,8 +37,8 @@ Note that each population will have its own *B*, while SVL<sub>mean</sub> is the
 This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism. 
 
 Example:\
-`m <- read.csv("foo.csv")\
-body_adjust(m)`
+`m <- read.csv("foo.csv")`\
+`body_adjust(m)`
 
 ## PCA
 The `GS_pca()` function is a wrapper that uses native `prcomp()` function with scaling and outputs `ggplot` graphs and a summary table
