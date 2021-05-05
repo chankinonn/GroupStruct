@@ -36,7 +36,7 @@ body_adjust <- function(data){
     ### Define fx for allometric equation as defined above
     allo <- function(x){
       y <- species_subsets$SVL
-      temp <- lm(x~y, species_subsets)  ### Perform linear regression
+      temp <- lm(log(x)~log(y), species_subsets)  ### Perform linear regression
       temp <- as.numeric(temp$coefficients[2]) ### Extract beta coefficient
       adj <- log(x)-temp*(log(y)-log(mean(y)))  ### Plug into equation
     }
