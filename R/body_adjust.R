@@ -1,20 +1,20 @@
-#' Allometric adjustment of morphometric characters to correct for intraspecific
-#' ontogenetic variation
+#' Allometric adjustment of morphometric characters to correct for
+#' ontogenetic variation in a multispecies dataset
 #'
-#' This function uses an allometric growth equation to adjust for ontogenetic variation
-#' among populations within a species, i.e. intraspecific variation. Hence, this function
-#' should be applied separately for different species. The function uses the following allometric
-#' equation: Xadj = log(X)-B[log(SVL)-log(SVLmean)], where Xadj
-#' = Adjusted value for character X; X = raw/unadjusted value for character X; B =
-#' unstandardized regression coefficient for X against SVL; SVL = measured SVL; SVLmean =
-#' mean SVL for all populations.
+#' This function uses the following allometric growth equation to adjust for ontogenetic variation:
+#' Xadj = log10(X)-B[log10(SVL)-log10(SVLmean)], where Xadj = Adjusted value for character X;
+#' X = raw/unadjusted value for character X; B = pooled regression coefficient (slope) of log10(X) against log10(SVL);
+#' SVL = measured SVL; SVLmean = grand mean SVL for a particular species
 #'
-#' Note that each population will have its own B and SVLmean is the average SVL of all populations
-#' included in the dataset.
+#' Following Thorpe(1975), pooling refers to the grouping of multiple localities (of the same species)
+#' to produce a compound locality with a higher sample size. This produces a more accurate slope compared to
+#' slopes derived from subpopulations with low sample sizes. However, if population-level sampling is adequate
+#' and the slopes of different populations are not equal (e.g. geographic variation), the common within-group
+#' slope should be used (separate slope for each population)
 #'
 #' This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism.
 #'
-#' @param data csv file with population identifiers in the 1st column, followed by body legnth measurement (e.g. snout-vent-length) in the 2nd column. Other morphometric measurements are contained in the 3rd column onwards. Singletons (only one sample per population) and missing data are not allowed
+#' @param data csv file with species identifiers in the 1st column, followed by body length measurement (e.g. snout-vent-length) in the 2nd column. Other morphometric measurements are contained in the 3rd column onwards. Singletons (only one sample per species) and missing data are not allowed
 #' @return Returns log-transformed and body-size adjusted data in a table called outfile.csv
 #' @import dplyr
 #' @export
@@ -36,9 +36,9 @@ body_adjust <- function(data){
     ### Define fx for allometric equation as defined above
     allo <- function(x){
       y <- species_subsets$SVL
-      temp <- lm(log(x)~log(y), species_subsets)  ### Perform linear regression
+      temp <- lm(log10(x)~log10(y), species_subsets)  ### Perform linear regression
       temp <- as.numeric(temp$coefficients[2]) ### Extract beta coefficient
-      adj <- log(x)-temp*(log(y)-log(mean(y)))  ### Plug into equation
+      adj <- log10(x)-temp*(log10(y)-log10(mean(y)))  ### Plug into equation
     }
 
     ### Loop through each species subset and apply fx from column 3 onwards; store results in "final"
