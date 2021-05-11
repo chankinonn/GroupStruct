@@ -12,6 +12,7 @@
 #' and the slopes of different populations are not equal (e.g. geographic variation), the common within-group
 #' slope should be used (separate slope for each population)
 #'
+#' Each species should be represented by more than two individuals for the adjustment to work and missing data must not be included.
 #' This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism.
 #'
 #' @param data csv file with species identifiers in the 1st column, followed by body length measurement (e.g. snout-vent-length) in the 2nd column. Other morphometric measurements are contained in the 3rd column onwards. Singletons (only one sample per species) and missing data are not allowed
@@ -51,7 +52,7 @@ allom <- function(data){
   ### Combine output, log-transform, and write to table
   all_combined <- cbind(SVL=log10(data$SVL), do.call(rbind, finalmatrix)) ### Combine results from loop and bind the column "SVL"
   final_adjusted <- data.frame(cbind(Species=data[1], all_combined)) ### Bind the column "Species" to the final dataset
-  write.csv(final_adjusted, "outfile.csv", row.names = FALSE)
+  write.csv(final_adjusted, "allom_outfile.csv", row.names = FALSE)
   print(final_adjusted)
 }
 
