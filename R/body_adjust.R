@@ -20,9 +20,12 @@
 #' @export
 #' @examples
 #' m <- read.csv("foo.csv") ## foo.csv = raw measurements
-#' body_adjust(m)
+#' allom(m)
+#' @references
+#' Thorpe, R. S. (1975) Quantitative handling of characters useful in snake systematics with particular reference to
+#' intraspecific variation in the Ringed Snake Natrix natrix (L.). Biological Journal of the Linnaean Society, 7: 27-43
 
-body_adjust <- function(data){
+allom <- function(data){
 
   species_list <- as.matrix(unique(data[1]))  ## Create list of unique species
   finalmatrix <- NULL  ### Create empty matrix and start loop for calculation
