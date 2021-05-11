@@ -2,7 +2,6 @@
 
 export(GS_pca)
 export(allom)
-export(body_adjust)
 import(dplyr)
 import(ggplot2)
 import(gridExtra)
