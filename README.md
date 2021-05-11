@@ -44,6 +44,9 @@ Example:\
 `m <- read.csv("foo.csv")`\
 `allom(m)`
 
+## Residuals
+The function `resid()` calculates residuals of a linear regression of each character against body size
+
 ## PCA
 The `GS_pca()` function is a wrapper that uses native `prcomp()` function with scaling and outputs `ggplot` graphs and a summary table
 
