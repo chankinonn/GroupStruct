@@ -33,7 +33,7 @@ resid <- function(data){
     finalmatrix[[i]] <- apply(species_subsets[,3:ncol(species_subsets)], 2, residuals)
   }
   ### Combine output, log-transform, and write to table
-  all_combined <- cbind(do.call(rbind, finalmatrix)) ### Combine results from loop and bind the column "SVL"
+  all_combined <- data.frame(cbind(Species=species_list, do.call(rbind, finalmatrix))) ### Combine results from loop and bind the column "SVL"
   write.csv(all_combined, "residuals_outfile.csv", row.names = FALSE)
   print(all_combined)
 }
