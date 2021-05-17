@@ -31,7 +31,7 @@ B | 22.4 | 7.6 | 10.4 | 5.0
 ## Allometric adjustment of morphological characters for multipecies and multipopulatin datasets
 The `allom()` function uses the following allometric growth equation to adjust for ontogenetic variation (Thorpe, 1975):\
 
-<div align="center">*X*<sub>adj</sub> = log(*X*)-*b*[log(BL)-log(BL<sub>mean</sub>)]</div>\
+<div align="center">*X*<sub>adj</sub> = log(*X*)-*b*[log(BL)-log(BL<sub>mean</sub>)]</div>
 
 where *X*<sub>adj</sub> = Adjusted value for character *X*; *X* = raw/unadjusted value for character *X*; *b* = regression coefficient (slope) for log(*X*) against log(BL); BL = measurement of body size; BL<sub>mean</sub> = grand mean of BL. This method removes all the information related to size, scales all individuals to the same size, and adjusts their shape to the new size according to allometry. 
 
