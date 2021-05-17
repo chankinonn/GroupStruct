@@ -53,7 +53,7 @@ Multipopulation dataset:\
 The function `resid()` calculates residuals of a linear regression of each character against body size
 
 ## PCA
-The `GS_pca()` function log-transforms the data, peforms PCA using `prcomp()` with scaling and outputs `ggplot` graphs and a summary table. 
+The `ez_pca()` function log-transforms the data, peforms PCA using `prcomp()` with scaling and outputs `ggplot` graphs and a summary table. 
 
 # CITATION
 If you use this package, please cite it as:
