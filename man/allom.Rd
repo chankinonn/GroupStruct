@@ -3,9 +3,9 @@
 \name{allom}
 \alias{allom}
 \title{Allometric adjustment of morphometric characters to correct for
-ontogenetic variation in a multispecies dataset}
+ontogenetic variation in multispecies or multipopulation datasets}
 \usage{
-allom(data)
+allom(data, type)
 }
 \arguments{
 \item{data}{csv file with species identifiers in the 1st column, followed by body length measurement (e.g. snout-vent-length) in the 2nd column. Other morphometric measurements are contained in the 3rd column onwards. Singletons (only one sample per species) and missing data are not allowed}
@@ -14,24 +14,27 @@ allom(data)
 Returns log-transformed and body-size adjusted data in a table called outfile.csv
 }
 \description{
-This function uses the following allometric growth equation to adjust for ontogenetic variation:
-Xadj = log10(X)-B[log10(SVL)-log10(SVLmean)], where Xadj = Adjusted value for character X;
-X = raw/unadjusted value for character X; B = pooled regression coefficient (slope) of log10(X) against log10(SVL);
-SVL = measured SVL; SVLmean = grand mean SVL for a particular species
+A multispecies dataset should comprise more than 1 species where each unique identifier in the first column represents
+a different species. A multipopulation dataset comprises a single species where each unique identifier represents
+a different population/locality. Datasets should be in csv format with the 1st colum = OTU identifier; 2nd column = body size measurement; 3rd column onwards = measurements of other morphometric traits
 }
 \details{
-Following Thorpe(1975), pooling refers to the grouping of multiple localities (of the same species)
-to produce a compound locality with a higher sample size. This produces a more accurate slope compared to
-slopes derived from subpopulations with low sample sizes. However, if population-level sampling is adequate
-and the slopes of different populations are not equal (e.g. geographic variation), the common within-group
-slope should be used (separate slope for each population)
+This function uses the following allometric growth equation to adjust for ontogenetic variation:
+Xadj = log10(X)-B[log10(BL)-log10(BLmean)], where Xadj = Adjusted value for character X;
+X = raw/unadjusted value for character X; B = pooled regression coefficient (slope) of log10(X) against log10(BL);
+BL = observed value of the standard measure of body length (e.g. snout-vent-length); BLmean = grand mean for BL.
 
-Each species should be represented by more than two individuals for the adjustment to work and missing data must not be included.
+Following Thorpe (1975), there are two different types of group pooling. For multispecies datasets
+where each OTU identifier represents a different species, pooling refers to the grouping of multiple localities/populations
+of the same species under a single OTU identifier to produce a compound locality (pooled groups) and a slope is calculated
+for each species. For multipopulation datasets, the OTU identifier represents different populations and a slope is
+calculated for each population (common within groups). The only difference in calculations between multispecies and
+multipopulation datasets is in BLmean. For multispecies datasets, separate BLmean will be calculated for each species,
+whereas in a multipopulation dataset, a single BLmean is calculated across all populations to represent the average size of the species.
+
+
+Each OTU should be represented by more than two individuals for the adjustment to work and missing data must not be included.
 This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism.
-}
-\examples{
-m <- read.csv("foo.csv") ## foo.csv = raw measurements
-allom(m)
 }
 \references{
 Thorpe, R. S. (1975) Quantitative handling of characters useful in snake systematics with particular reference to

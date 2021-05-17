@@ -19,7 +19,7 @@ Input data should be in csv format and configured as follow:
 
 Example:
 
-Population | SVL | HW | HL | SNL 
+OTU | SVL | HW | HL | SNL 
 --- | --- | --- | --- | ---
 A | 23.5 | 8.8 | 12.5 | 5.6
 A | 24.0 | 8.5 | 12.0 | 5.2
@@ -28,21 +28,23 @@ B | 22.9 | 7.2 | 10.3 | 4.8
 B | 22.4 | 7.7 | 10.2 | 4.6
 B | 22.4 | 7.6 | 10.4 | 5.0
 
-Missing data should not be included
-
-
-## Allometric adjustment of morphological characters for datasets containing multiple species `allom()` and multiple populations of a single species `allom_pop()`
+## Allometric adjustment of morphological characters for multipecies and multipopulatin datasets
 The `allom()` function uses the following allometric growth equation to adjust for ontogenetic variation (Thorpe, 1975):\
-*X*<sub>adj</sub> = log(*X*)-*b*[log(SVL)-log(SVL<sub>mean</sub>)]\
-where *X*<sub>adj</sub> = Adjusted value for character *X*; *X* = raw/unadjusted value for character *X*; *b* = regression coefficient (slope) for log(*X*) against log(SVL); SVL = measured SVL; SVL<sub>mean</sub> = grand mean SVL for the species. This method removes all the information related to size, scales all individuals to the same size, and adjusts their shape to the new size according to allometry. 
+*X*<sub>adj</sub> = log(*X*)-*b*[log(BL)-log(BL<sub>mean</sub>)]\
+where *X*<sub>adj</sub> = Adjusted value for character *X*; *X* = raw/unadjusted value for character *X*; *b* = regression coefficient (slope) for log(*X*) against log(BL); BL = measurement of body size; BL<sub>mean</sub> = grand mean of BL. This method removes all the information related to size, scales all individuals to the same size, and adjusts their shape to the new size according to allometry. 
 
-This function assumes the each unique identifier in the first colum of the dataset represents a distinct species. If there are several populations/localities within a species, these should be grouped under a common name (pooled groups *sensu* Thorpe (1975)). Each species should be represented by more than two individuals for the adjustment to work and missing data must not be included. This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism. 
+A multispecies dataset comprises more than one species where each unique identifier in the first column represents a different species. If there are several populations/localities within a species, these should be grouped under a common identifier (pooled groups *sensu* Thorpe (1975)). A multipopulation dataset comprises a single species where each unique identifier represents a different population/locality (common within-group pooling). The only difference in calculations between multispecies and multipopulation datasets is in BLmean. For multispecies datasets, a separate BLmean will be calculated for each species, whereas in a multipopulation dataset, a single BLmean is calculated across all populations to represent the average size of the species.
 
-To adjust for intraspecific variation (e.g. geographic variation among populations of the same species), use the `allom_pop()` function. In this case, the input dataset consists of a single species with the first column representing population names. The slope (*b*) is calculated using common within-groups pooling and SVL<sub>mean</sub> is the grand mean calculated by averaging over all populations. 
+Each OTU should be represented by more than two individuals for the adjustment to work and missing data must not be included. This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism. 
 
 Example:\
+Multispecies dataset:
 `m <- read.csv("foo.csv")`\
-`allom(m)`
+`allom(m, type = "species")`
+
+Multipopulation dataset:
+`m <- read.csv("foo.csv")`\
+`allom(m, type = "population")`
 
 ## Residuals
 The function `resid()` calculates residuals of a linear regression of each character against body size
