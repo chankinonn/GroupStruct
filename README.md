@@ -33,18 +33,18 @@ The `allom()` function uses the following allometric growth equation to adjust f
 
 <div align="center">*X*<sub>adj</sub> = log(*X*)-*b*[log(BL)-log(BL<sub>mean</sub>)]</div>
 
-where *X*<sub>adj</sub> = Adjusted value for character *X*; *X* = raw/unadjusted value for character *X*; *b* = regression coefficient (slope) for log(*X*) against log(BL); BL = measurement of body size; BL<sub>mean</sub> = grand mean of BL. This method removes all the information related to size, scales all individuals to the same size, and adjusts their shape to the new size according to allometry. 
+where *X*<sub>adj</sub> = Adjusted value for character *X*; *X* = raw/unadjusted value for character *X*; *b* = regression coefficient (slope) for log(*X*) against log(BL); BL = measurement of body length/size; BL<sub>mean</sub> = grand mean of BL. This method removes all the information related to size, scales all individuals to the same size, and adjusts their shape to the new size according to allometry. 
 
 A multispecies dataset comprises more than one species where each unique identifier in the first column represents a different species. If there are several populations/localities within a species, these should be grouped under a common identifier (pooled groups *sensu* Thorpe (1975)). A multipopulation dataset comprises a single species where each unique identifier represents a different population/locality (common within-group pooling). The only difference in calculations between multispecies and multipopulation datasets is in BLmean. For multispecies datasets, a separate BLmean will be calculated for each species, whereas in a multipopulation dataset, a single BLmean is calculated across all populations to represent the average size of the species.
 
 Each OTU should be represented by more than two individuals for the adjustment to work and missing data must not be included. This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism. 
 
 Example:\
-Multispecies dataset:
+Multispecies dataset:\
 `m <- read.csv("foo.csv")`\
 `allom(m, type = "species")`
 
-Multipopulation dataset:
+Multipopulation dataset:\
 `m <- read.csv("foo.csv")`\
 `allom(m, type = "population")`
 
