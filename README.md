@@ -58,7 +58,7 @@ The `ez_pca()` function log-transforms the data, peforms PCA using `prcomp()` wi
 # CITATION
 If you use this package, please cite it as:
 
-Kin Onn Chan (2021). GroupStruct (R package). https://github.com/chankinonn/GroupStruct
+Chan, K.O. & Grismer, L. L. (2021). Correcting for Body Size Variation in Morphometric Analysis. *bioRxiv*, 2021.05.17.444580; doi: https://doi.org/10.1101/2021.05.17.444580 
 
 # References
 Thorpe, R. S. (1975) Quantitative handling of characters useful in snake systematics with particular reference to intraspecific variation in the Ringed Snake *Natrix natrix* (L.). *Biological Journal of the Linnaean Society*, 7: 27-43
