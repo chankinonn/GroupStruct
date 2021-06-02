@@ -11,7 +11,7 @@
 #' @export
 
 ez_pca <- function(data){
-  pca <- prcomp(log10(data[,2:ncol(data)]), scale=TRUE)
+  pca <- prcomp(data[,2:ncol(data)], scale=TRUE)
   scores <- data.frame(Species=data[,1], pca$x[,1:3])
   p1 <- ggplot(scores, aes(PC1, PC2, group=data[,1])) + theme_bw() +
     geom_point(aes(color=data[,1]), size=5) +
