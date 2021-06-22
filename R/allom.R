@@ -23,13 +23,14 @@
 #' This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism.
 #'
 #' @param data csv file with species identifiers in the 1st column, followed by body length measurement (e.g. snout-vent-length) in the 2nd column. Other morphometric measurements are contained in the 3rd column onwards. Singletons (only one sample per species) and missing data are not allowed
+#' @param type Enter "species" for multispecies and "population" for multipopulation datasets.
 #' @return Returns log-transformed and body-size adjusted data in a table called outfile.csv
 #' @import dplyr
 #' @export
 #' @examples
 #' For multispecies datasets:
 #' m <- read.csv("foo.csv") ## foo.csv = raw measurements
-#' allom(m, type="species)
+#' allom(m, type="species")
 #'
 #' For multipopulation datasets:
 #' allom(m, type="population")
