@@ -80,7 +80,7 @@ allom <- function(data, type){
 
   ### Combine output, log-transform, and write to table
   name <- colnames(data[2])
-  all_combined <- cbind(paste(name))=log10(data[,2]), do.call(rbind, finalmatrix)) ### Combine results from loop and bind the column "SVL"
+  all_combined <- cbind(log10(data[,2, drop=FALSE]), do.call(rbind, finalmatrix)) ### Combine results from loop and bind the column "SVL"
   final_adjusted <- data.frame(cbind(data[1], all_combined)) ### Bind the column "Species" to the final dataset
   write.csv(final_adjusted, "allom_outfile.csv", row.names = FALSE)
   print(final_adjusted)
