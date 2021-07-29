@@ -2,7 +2,6 @@
 
 export(allom)
 export(ez_pca)
-export(resid)
 import(dplyr)
 import(ggplot2)
 import(gridExtra)
