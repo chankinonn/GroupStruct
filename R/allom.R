@@ -72,7 +72,7 @@ allom <- function(data, type){
     allo_pop2 <- function(x){
       y <- data[,2]
       z <- mean(data[,2])
-      temp <- lm(log10(x)~log10(y), data[,])  ### Perform linear regression, slope=pooled groups
+      temp <- lm(log10(x)~log10(data[,2]), data)  ### Perform linear regression, slope=pooled groups
       temp <- as.numeric(temp$coefficients[2]) ### Extract beta coefficient
       adj <- log10(x)-temp*(log10(y)-log10(z))  ### Plug into equation
     }
