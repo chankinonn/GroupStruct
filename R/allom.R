@@ -54,7 +54,7 @@ allom <- function(data, type){
     species_subsets <- filter(data, data[,1]==species_list[i])
 
     ### Define fx for allometric equation as defined above
-    allo1 <- function(x){
+    allo <- function(x){
       y <- species_subsets[,2]
       temp <- lm(log10(x)~log10(y), species_subsets)  ### Perform linear regression
       temp <- as.numeric(temp$coefficients[2]) ### Extract beta coefficient
