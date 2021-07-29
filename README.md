@@ -28,7 +28,7 @@ B | 22.9 | 7.2 | 10.3 | 4.8
 B | 22.4 | 7.7 | 10.2 | 4.6
 B | 22.4 | 7.6 | 10.4 | 5.0
 
-## Allometric adjustment of morphological characters for multipecies and multipopulatin datasets
+## Allometric adjustment of morphological characters for multispecies and multipopulation datasets
 The `allom()` function uses the following allometric growth equation to adjust for ontogenetic variation (Thorpe, 1975):
 
 <div align="center">X<sub>adj</sub> = log(X)-b[log(BL)-log(BL<sub>mean</sub>)]</div> 
@@ -36,21 +36,25 @@ The `allom()` function uses the following allometric growth equation to adjust f
 \
 where *X*<sub>adj</sub> = Adjusted value for character *X*; *X* = raw/unadjusted value for character *X*; *b* = regression coefficient (slope) for log(*X*) against log(BL); BL = measurement of body length/size; BL<sub>mean</sub> = grand mean of BL. This method removes all the information related to size, scales all individuals to the same size, and adjusts their shape to the new size according to allometry. 
 
-A multispecies dataset comprises more than one species where each unique identifier in the first column represents a different species. If there are several populations/localities within a species, these should be grouped under a common identifier (pooled groups *sensu* Thorpe (1975)). A multipopulation dataset comprises a single species where each unique identifier represents a different population/locality (common within-group pooling). The only difference in calculations between multispecies and multipopulation datasets is in BLmean. For multispecies datasets, a separate BLmean will be calculated for each species, whereas in a multipopulation dataset, a single BLmean is calculated across all populations to represent the average size of the species.
+A multispecies dataset comprises more than one species where each unique identifier in the first column represents a different species. If there are several populations/localities within a species, these should be grouped under a common identifier (pooled groups *sensu* Thorpe (1975)). A multipopulation dataset comprises a single species where each unique identifier represents a different population/locality. Here, there are two ways to calculate the slope. For type = population1, a separate slope is calculated for each population (common within-group pooling). If type = population2, all populations are pooled (pooled group) and a single slope is calculated based on combined populations. The latter should be used if the slopes of each population have been ascertained to be equal (Thorpe 1976). 
+
+
+The other difference in calculation between multispecies and multipopulation datasets is in BLmean. For multispecies datasets, a separate BLmean will be calculated for each species, whereas in a multipopulation dataset, a single BLmean is calculated across all populations to represent the average size of the species.
 
 Each OTU should be represented by more than two individuals for the adjustment to work and missing data must not be included. This adjustment should also be performed separately on different sexes to account for possible sexual dimorphism. 
 
 Example:\
-Multispecies dataset:\
+Multispecies datasets:\
 `m <- read.csv("foo.csv")`\
 `allom(m, type = "species")`
 
-Multipopulation dataset:\
+Multipopulation datasets (common within-group):\
 `m <- read.csv("foo.csv")`\
-`allom(m, type = "population")`
+`allom(m, type = "population1")`
 
-## Residuals
-The function `resid()` calculates residuals of a linear regression of each character against body size
+Multipopulation datasets (pooled group):\
+`m <- read.csv("foo.csv")`\
+`allom(m, type = "population2")`
 
 ## PCA
 The `ez_pca()` function peforms PCA using `prcomp()` with scaling and outputs `ggplot` graphs and a summary table. No transformations are done on the data so all transformations/adjustments (e.g. log transformation) should be done prior to using this function.
