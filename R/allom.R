@@ -70,7 +70,7 @@ allom <- function(data, type){
     }
 
     allo_pop2 <- function(x){
-      y <- species_subsets[,2]
+      y <- data[,2]
       z <- mean(data[,2])
       temp <- lm(log10(x)~log10(y), data)  ### Perform linear regression, slope=pooled groups
       temp <- as.numeric(temp$coefficients[2]) ### Extract beta coefficient
