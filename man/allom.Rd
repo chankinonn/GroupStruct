@@ -27,10 +27,15 @@ Xadj = log10(X)-B[log10(BL)-log10(BLmean)], where Xadj = Adjusted value for char
 X = raw/unadjusted value for character X; B = pooled regression coefficient (slope) of log10(X) against log10(BL);
 BL = observed value of the standard measure of body length (e.g. snout-vent-length); BLmean = grand mean for BL.
 
-In a multipopulation dataset, there are two ways of calculating the slope. For type = population1, a separate slope is
+There are two ways to calculate the slope depending on how groups are structured: (i) Pooled groups combine different localities/populations to form a single
+compound locality to boost sample size. However, this should only be done if populations are not significantly heterogeneous (e.g., no geographic variation).
+(ii) Common within-group pooling considers each population separately and a different slope is calculated for each population.
+For type = population1 in a multipopulation dataset, a separate slope is
 calculated for each population (common within-group pooling). If type = population2, all populations are pooled (pooled group)
-and a single slope is calculated based on combined populations. The latter should be used if the slopes of each population have
-been ascertained to be equal (Thorpe 1976). The other difference in calculations between multispecies and
+and a single slope is calculated based on combined populations. For multispecies datasets (type = species), populations
+are pooled under a single species identifier and slopes are calculated based on pooled groups. If population-level variation is present within the multispecies dataset,
+each species should be analyzed as separate multipopulation datasets using type = population1.
+The other difference in calculations between multispecies and
 multipopulation datasets is in BLmean. For multispecies datasets, a separate BLmean will be calculated for each species,
 whereas in a multipopulation dataset, a single BLmean is calculated to represent the standard size of the species averaged across all populations.
 
