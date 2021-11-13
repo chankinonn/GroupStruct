@@ -64,7 +64,7 @@ The `ez_pca()` function peforms PCA using `prcomp()` with scaling and outputs `g
 # CITATION
 If you use this package, please cite it as:
 
-Chan, K.O. & Grismer, L. L. (2021). Correcting for Body Size Variation in Morphometric Analysis. *bioRxiv*, 2021.05.17.444580; doi: https://doi.org/10.1101/2021.05.17.444580 
+Chan, K.O. & Grismer, L. L. (2021). A standardized and statistically defensible framework for quantitative morphological analyses in taxonomic studies. *Zootaxa*, 5023: 293-300 
 
 # References
 Thorpe, R. S. (1975) Quantitative handling of characters useful in snake systematics with particular reference to intraspecific variation in the Ringed Snake *Natrix natrix* (L.). *Biological Journal of the Linnaean Society*, 7: 27-43
