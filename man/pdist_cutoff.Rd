@@ -4,17 +4,19 @@
 \alias{pdist_cutoff}
 \title{Calculate p-distances and identify species pairs that are above a user-specified threshold}
 \usage{
-pdist_cutoff(fasta_file, cutoff, output_file)
+pdist_cutoff(fasta_file, cutoff, raw_output_file, aggregated_output_file)
 }
 \arguments{
 \item{fasta_file}{Alignned FASTA sequences. Make sure sequences are labeled as genus_species. You can add other unique identifiers after the species name using a second underscore. E.g. Bufo_bufo_MN09667}
 
 \item{cutoff}{Set your desired cut-off. E.g. 0.03 for a 3 percent cut-off}
 
-\item{output_file}{Name of output file}
+\item{raw_output_file}{Name of output file for raw p-distances}
+
+\item{aggregated_output_file}{Name of output file for p-distances aggregated by species}
 }
 \value{
-Writes a CSV-formatted file with species pairs in separate columns followed by min, max, and mean. Species that meet the cut-off will be printed
+Writes two CSV-formatted files. One contains raw p-distances for every individual pairwise comparison. A second table aggregates p-distances by species showing min, max, and mean. Species that meet the cut-off will be printed
 }
 \description{
 Uses the dist_dna function in ape to calculate p-distances
@@ -27,8 +29,9 @@ Set cutoff value
 mycutoff <- 0.05
 
 Set your output file name
-myoutput <- "pdist_output.csv"
+raw_output <- "raw_output.csv"
+aggregated_output <- "aggregated_output.csv"
 
 Run example
-pdist_cutoff(myfasta, mycutoff, myoutput)
+pdist_cutoff(myfasta, mycutoff, raw_output, aggregated_output)
 }

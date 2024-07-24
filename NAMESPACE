@@ -3,6 +3,7 @@
 export(allom)
 export(ez_pca)
 export(pdist_cutoff)
+export(plot_pdist)
 import(ape)
 import(dplyr)
 import(ggplot2)
