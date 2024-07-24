@@ -14,7 +14,7 @@ pdist_cutoff(fasta_file, cutoff, output_file)
 \item{output_file}{Name of output file}
 }
 \value{
-Returns a CSV-formatted file with species pairs in separate columns followed by min, max, and mean
+Writes a CSV-formatted file with species pairs in separate columns followed by min, max, and mean. Species that meet the cut-off will be printed
 }
 \description{
 Uses the dist_dna function in ape to calculate p-distances

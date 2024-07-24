@@ -6,7 +6,7 @@
 #' @param fasta_file Alignned FASTA sequences. Make sure sequences are labeled as genus_species. You can add other unique identifiers after the species name using a second underscore. E.g. Bufo_bufo_MN09667
 #' @param cutoff Set your desired cut-off. E.g. 0.03 for a 3 percent cut-off
 #' @param output_file Name of output file
-#' @return Returns a CSV-formatted file with species pairs in separate columns followed by min, max, and mean
+#' @return Writes a CSV-formatted file with species pairs in separate columns followed by min, max, and mean. Species that meet the cut-off will be printed
 #' @import ape tidyr dplyr
 #' @export
 #' @examples
@@ -21,7 +21,6 @@
 #'
 #' Run example
 #' pdist_cutoff(myfasta, mycutoff, myoutput)
-
 
 pdist_cutoff <- function(fasta_file, cutoff, output_file) {
   # Read the aligned sequences from the FASTA file
@@ -59,5 +58,12 @@ pdist_cutoff <- function(fasta_file, cutoff, output_file) {
   write.csv(aggregated_results, file = output_file, row.names = FALSE)
 
   # Inform the user that the file has been saved
-  cat("Results saved to", output_file)
+  cat("Results saved to", output_file, "\n")
+
+  # Extract unique species names from the first two columns
+  unique_species <- unique(c(aggregated_results$Species1, aggregated_results$Species2))
+
+  # Print the unique species names
+  cat("Species that meet cutoff:\n")
+  print(unique_species)
 }
