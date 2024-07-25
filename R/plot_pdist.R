@@ -30,7 +30,7 @@
 #' Boxplots for the specified species combinations
 #' plot_pdist(results, focal_species, comparison_species)
 
-plot_pdist <- function(x, focal_species, comparison_species) {
+plot_pdist <- function(raw_distance_df, focal_species, comparison_species) {
   # Filter the results to include only rows where the specified species is involved in the specified combinations
   plot_data <- raw_distance_df %>%
     filter((Species1 == focal_species & Species2 %in% comparison_species) |
