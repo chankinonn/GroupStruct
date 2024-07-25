@@ -72,7 +72,7 @@ Set cutoff value\
 `mycutoff <- 0.05`
 
 Set your output file name\
-`raw_output <- "raw_output.csv"`
+`raw_output <- "raw_output.csv"`\
 `aggregated_output <- "aggregated_output.csv"`
 
 Get p-distances\
@@ -82,7 +82,7 @@ Get p-distances\
 The `plot_pdist()` function takes the results of the `pdist_cutoff()` and plots boxplots of a chosen focal species compared against a list of selected species. E.g., if you wish you compare the p-distance of Species A (focal_species) with Species B, C, and D (comparison_species):\
 
 Specify the focal species  and the list of comparison species\
-`focal_species <- "Micryletta_subaraji"`
+`focal_species <- "Micryletta_subaraji"`\
 `comparison_species <- c("Micryletta_sumatrana", "Micryletta_dissimulans", "Micryletta_inornata", "Micryletta_nigromaculata")`
 
 Boxplots for the specified species combinations\
