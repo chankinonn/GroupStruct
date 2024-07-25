@@ -65,27 +65,27 @@ The `ez_pca()` function peforms PCA using `prcomp()` with scaling and outputs `g
 The `pdist_cutoff()` function calculates p-distances using a FASTA-formatted alignment and identifies pairs of species that exceeds a user-specified threshold. For example, this function can be used to identify combinations of species pairs that exceed a p-distance threshold of 3% (users can specify whatever threshold they want). For this function to work, multiple sequences need to be aligned as a single FASTA-formatted alignment file and labeled as genus_species. Other unique identifiers can be appended after the species name using additoinal underscores. E.g. Bufo_bufo_MN4578. The output table will be written to the working directory and a list of species that meet the cutoff will be printed.
 
 Example:\
-Set path to fasta alignment
+Set path to fasta alignment\
 `myfasta <- "path/to/fasta/fasta_alignment.fas"`
 
-Set cutoff value
+Set cutoff value\
 `mycutoff <- 0.05`
 
-Set your output file name
+Set your output file name\
 `raw_output <- "raw_output.csv"`
 `aggregated_output <- "aggregated_output.csv"`
 
-Get p-distances
+Get p-distances\
 `results <- pdist_cutoff(myfasta, mycutoff, raw_output, aggregated_output)`
 
 # Plotting P-dsitance comparisons
 The `plot_pdist()` function takes the results of the `pdist_cutoff()` and plots boxplots of a chosen focal species compared against a list of selected species. E.g., if you wish you compare the p-distance of Species A (focal_species) with Species B, C, and D (comparison_species):\
 
-Specify the focal species  and the list of comparison species
+Specify the focal species  and the list of comparison species\
 `focal_species <- "Micryletta_subaraji"`
 `comparison_species <- c("Micryletta_sumatrana", "Micryletta_dissimulans", "Micryletta_inornata", "Micryletta_nigromaculata")`
 
-Boxplots for the specified species combinations
+Boxplots for the specified species combinations\
 `plot_pdist(results, focal_species, comparison_species)`
 
 
