@@ -78,7 +78,7 @@ Set your output file name\
 Get p-distances\
 `results <- pdist_cutoff(myfasta, mycutoff, raw_output, aggregated_output)`
 
-# Plotting P-dsitance comparisons
+# Plotting P-distance comparisons
 The `plot_pdist()` function takes the results of the `pdist_cutoff()` and plots boxplots of a chosen focal species compared against a list of selected species. E.g., if you wish you compare the p-distance of Species A (focal_species) with Species B, C, and D (comparison_species):
 
 Specify the focal species  and the list of comparison species\
