@@ -66,9 +66,9 @@ The `pdist_cutoff()` function calculates p-distances using a FASTA-formatted ali
 
 Example:\
 Set path to fasta alignment\
-`myfasta <- "path/to/fasta/fasta_alignment.fas"`
+`myfasta <- "path/to/fasta_alignment.fas"`
 
-Set cutoff value\
+Set cutoff value (e.g., 5%)\
 `mycutoff <- 0.05`
 
 Set your output file name\
@@ -79,11 +79,11 @@ Get p-distances\
 `results <- pdist_cutoff(myfasta, mycutoff, raw_output, aggregated_output)`
 
 # Plotting P-dsitance comparisons
-The `plot_pdist()` function takes the results of the `pdist_cutoff()` and plots boxplots of a chosen focal species compared against a list of selected species. E.g., if you wish you compare the p-distance of Species A (focal_species) with Species B, C, and D (comparison_species):\
+The `plot_pdist()` function takes the results of the `pdist_cutoff()` and plots boxplots of a chosen focal species compared against a list of selected species. E.g., if you wish you compare the p-distance of Species A (focal_species) with Species B, C, and D (comparison_species):
 
 Specify the focal species  and the list of comparison species\
-`focal_species <- "Micryletta_subaraji"`\
-`comparison_species <- c("Micryletta_sumatrana", "Micryletta_dissimulans", "Micryletta_inornata", "Micryletta_nigromaculata")`
+`focal_species <- "Species_A"`\
+`comparison_species <- c("Species_B", "Species_C", "Species_D")`
 
 Boxplots for the specified species combinations\
 `plot_pdist(results, focal_species, comparison_species)`
