@@ -62,7 +62,8 @@ Multipopulation datasets (pooled group):\
 `morpho_struct()` takes raw morphological data, performs allometric size correction, followed by PCA and ANOVA/Tukey mutivariate analyses on the size-corrected data all in one function. See above on how to format morphological data. This function returns three tables and one PCA plot. Output tables are automatically written to the working directory and include size-corrected data, a summary of the PCA analysis, and a summary of the ANOVA/Tukey analysis. For the PCA plot, users can select custom colors, whether or not to draw confidnece ellipses, and level of confidence for ellipses.
 
 Example:\
-`morpho_struct("path/to/raw_morpho_data.csv", type="species")` # Choose which type of allometric correction to use. See above
+`mycolors <- c("red","green","blue")` # Number of colors must equal number of groups\
+`morpho_struct("path/to/raw_morpho_data.csv", type="species", colors=mycolors)` # Choose which type of allometric correction to use. See above
 
 # P-distance Analyses
 `pdist_cutoff()` calculates p-distances using a FASTA-formatted alignment and identifies pairs of species that exceeds a user-specified threshold. For example, this function can be used to identify combinations of species pairs that exceed a p-distance threshold of 5% (users can specify whatever threshold they want). For this function to work, multiple sequences need to be aligned as a single FASTA-formatted alignment file and labeled as genus_species. Other unique identifiers can be appended after the species name using additoinal underscores. E.g. Bufo_bufo_MN4578. The output table will be written to the working directory and a list of species that meet the cutoff will be printed.
