@@ -13,6 +13,8 @@ pdist_compare(
 )
 }
 \arguments{
+\item{raw_distance_df}{Results from the pdist_cutoff function}
+
 \item{focal_species}{Focal species that you want to make comparisons with}
 
 \item{comparison_species}{A list of other species to be compared with the focal species}
@@ -20,8 +22,6 @@ pdist_compare(
 \item{colors}{Optional. List of manual colors for each comparison}
 
 \item{output_table}{Name of output table}
-
-\item{x}{Output from the pdist_cutoff function}
 }
 \value{
 A boxplot comparing the focal species with the supplied list of comparison species. Also writes a pairwise comparison table with min-max p-distances
