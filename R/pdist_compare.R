@@ -3,7 +3,7 @@
 #' Uses output from the pdist_cutoff function
 #'
 
-#' @param x Output from the pdist_cutoff function
+#' @param raw_distance_df Results from the pdist_cutoff function
 #' @param focal_species Focal species that you want to make comparisons with
 #' @param comparison_species A list of other species to be compared with the focal species
 #' @param output_table Name of output table
