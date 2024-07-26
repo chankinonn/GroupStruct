@@ -33,5 +33,5 @@ Wrapper function that takes raw morphological data, performs allometric size cor
 Path to raw morphological data
 mydata <- "path/to/morpho_data.csv"
 
-morpho_struct("mydata", type = "species")
+morpho_struct(mydata, type = "species")
 }
