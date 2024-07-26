@@ -43,7 +43,7 @@ aggregated_output <- "aggregated_output.csv"
 Get p-distances
 results <- pdist_cutoff(myfasta, mycutoff, raw_output, aggregated_output)
 
-Specify the focal species, a list of other species for comparison, name for output table, and optional plotting colors
+Specify the focal species, a list of other species to compare, name of output table, and optional plotting colors
 focal_species <- "Species_A"
 comparison_species <- c("Species_B", "Species_C", "Species_D")
 output_table <- "comparison_table.csv"
