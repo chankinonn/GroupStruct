@@ -1,5 +1,5 @@
 # DESCRIPTION
-GroupStruct contains tools for analyzing and visualizing morphological and genetic data to evince group structure. Functions include body-size corrections of morphological characters to correct for ontogenetic variation in body size, various clustering/dimension reduction analyses, and comparing genetic distances (p-distance) of species based on a user-specific threshold  
+GroupStruct contains tools for analyzing and visualizing morphological and genetic data to evince group structure. Functions include body-size corrections of morphological characters to correct for ontogenetic variation in body size, various clustering/dimension reduction analyses, and various analyses using P-distances.
 Please post questions and bug reports to groupstruct@googlegroups.com
 
 # INSTALLATION
@@ -61,8 +61,10 @@ Multipopulation datasets (pooled group):\
 # PCA
 The `ez_pca()` function peforms PCA using `prcomp()` with scaling and outputs `ggplot` graphs and a summary table. No transformations are done on the data so all transformations/adjustments (e.g. log transformation) should be done prior to using this function.
 
-# P-distance comparisons
-The `pdist_cutoff()` function calculates p-distances using a FASTA-formatted alignment and identifies pairs of species that exceeds a user-specified threshold. For example, this function can be used to identify combinations of species pairs that exceed a p-distance threshold of 3% (users can specify whatever threshold they want). For this function to work, multiple sequences need to be aligned as a single FASTA-formatted alignment file and labeled as genus_species. Other unique identifiers can be appended after the species name using additoinal underscores. E.g. Bufo_bufo_MN4578. The output table will be written to the working directory and a list of species that meet the cutoff will be printed.
+# P-distance Analyses
+`pdist_cutoff()` calculates p-distances using a FASTA-formatted alignment and identifies pairs of species that exceeds a user-specified threshold. For example, this function can be used to identify combinations of species pairs that exceed a p-distance threshold of 5% (users can specify whatever threshold they want). For this function to work, multiple sequences need to be aligned as a single FASTA-formatted alignment file and labeled as genus_species. Other unique identifiers can be appended after the species name using additoinal underscores. E.g. Bufo_bufo_MN4578. The output table will be written to the working directory and a list of species that meet the cutoff will be printed.
+
+`pdist_compare()` is used to compare the p-distances of a focal species against a list of other specified species. This function uses the results from `pdist_cutoff()`, returns a boxplot and writes a pairwise comparison table with min-max p-distances that can be used for publication. You will need to provide a focal species, a list of other species to compare against the focal species, a name for the output table, and an optional list of colors for the boxplot.  
 
 Example:\
 Set path to fasta alignment\
@@ -76,17 +78,15 @@ Set your output file name\
 `aggregated_output <- "aggregated_output.csv"`
 
 Get p-distances\
-`results <- pdist_cutoff(myfasta, mycutoff, raw_output, aggregated_output)`
+`results <- pdist_cutoff(myfasta, mycutoff, raw_output, aggregated_output)`\
+`results`
 
-# Plotting P-distance comparisons
-The `plot_pdist()` function takes the results of the `pdist_cutoff()` and plots boxplots of a chosen focal species compared against a list of selected species. E.g., if you wish you compare the p-distance of Species A (focal_species) with Species B, C, and D (comparison_species):
-
-Specify the focal species  and the list of comparison species\
+Compare specific species\
 `focal_species <- "Species_A"`\
 `comparison_species <- c("Species_B", "Species_C", "Species_D")`
-
-Boxplots for the specified species combinations\
-`plot_pdist(results, focal_species, comparison_species)`
+`output_table <- "comparison_table.csv"`\
+`manual_colors <- c("Species_B" = "red", "Species_C" = "blue", "Species_D" = "green")`\
+`pdist_compare(results, focal_species, comparison_species, colors = manual_colors, output_table)`
 
 
 # CITATION
