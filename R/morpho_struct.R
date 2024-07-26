@@ -15,7 +15,7 @@
 #' Path to raw morphological data
 #' mydata <- "path/to/morpho_data.csv"
 #'
-#' morpho_struct("mydata", type = "species")
+#' morpho_struct(mydata, type = "species")
 
 morpho_struct <- function(input_file, type = "species", colors = NULL, draw_ellipses = TRUE, confidence_level = 0.95) {
   # Read the input file as a CSV
