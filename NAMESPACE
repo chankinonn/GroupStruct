@@ -2,6 +2,7 @@
 
 export(allom)
 export(ez_pca)
+export(pdist_compare)
 export(pdist_cutoff)
 export(plot_pdist)
 import(ape)

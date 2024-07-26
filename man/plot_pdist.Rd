@@ -4,14 +4,14 @@
 \alias{plot_pdist}
 \title{Create boxplots comparing p-distances of a focal species vs. a list of other species}
 \usage{
-plot_pdist(x, focal_species, comparison_species)
+plot_pdist(raw_distance_df, focal_species, comparison_species)
 }
 \arguments{
-\item{x}{Output from the pdist_cutoff function}
-
 \item{focal_species}{Focal species that you want to make comparisons with}
 
 \item{comparison_species}{A list of other species to be compared with the focal species}
+
+\item{x}{Output from the pdist_cutoff function}
 }
 \value{
 Writes two CSV-formatted files. One contains raw p-distances for every individual pairwise comparison. A second table aggregates p-distances by species showing min, max, and mean. Species that meet the cut-off will be printed
