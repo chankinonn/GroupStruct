@@ -31,7 +31,7 @@
 #' output_table <- "comparison_table.csv"
 #' manual_colors <- c("Species_B" = "red", "Species_C" = "blue", "Species_D" = "green")
 #'
-#' Boxplots for the specified species combinations
+#' Plot
 #' pdist_compare(results, focal_species, comparison_species, colors = manual_colors, output_table)
 
 pdist_compare <- function(raw_distance_df, focal_species, comparison_species, colors = NULL, output_table) {

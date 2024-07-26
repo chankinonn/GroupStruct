@@ -49,6 +49,6 @@ comparison_species <- c("Species_B", "Species_C", "Species_D")
 output_table <- "comparison_table.csv"
 manual_colors <- c("Species_B" = "red", "Species_C" = "blue", "Species_D" = "green")
 
-Boxplots for the specified species combinations
+Plot
 pdist_compare(results, focal_species, comparison_species, colors = manual_colors, output_table)
 }
