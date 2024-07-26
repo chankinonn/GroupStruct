@@ -8,7 +8,7 @@ morpho_struct(
   input_file,
   type = "species",
   colors = NULL,
-  draw_ellipses = FALSE,
+  draw_ellipses = TRUE,
   confidence_level = 0.95
 )
 }
@@ -24,7 +24,7 @@ morpho_struct(
 \item{confidence_level}{Level of confidence interval to draw ellipse}
 }
 \value{
-A PCA plot on PC1 and PC2 scores. Also writes two tables. One containing a summary of the PCA analysis and another containing the results of the ANOVA/Tukey analysis
+PCA plot of PC1 and PC2 scores. Also writes two tables. One containing a summary of the PCA analysis and another containing the results of the ANOVA/Tukey analysis
 }
 \description{
 Wrapper function that takes raw morphological data, performs allometric size correction using `allom()`, followed by PCA and ANOVA-Tukey test on size-corrected data.
@@ -33,5 +33,5 @@ Wrapper function that takes raw morphological data, performs allometric size cor
 Path to raw morphological data
 mydata <- "path/to/morpho_data.csv"
 
-morpho_struct("final_combined_male_raw.csv", type = "species")
+morpho_struct("mydata", type = "species")
 }

@@ -8,16 +8,16 @@
 #' @param colors Optional vector of colors for the PCA plot. Number of colors need to equal number of groups/species
 #' @param draw_ellipses Boolean. Whether to draw confidence ellipse on PCA plot
 #' @param confidence_level Level of confidence interval to draw ellipse
-#' @return A PCA plot on PC1 and PC2 scores. Also writes two tables. One containing a summary of the PCA analysis and another containing the results of the ANOVA/Tukey analysis
-#' @import GroupStruct ggplot2 dplyr multcomp broom
+#' @return PCA plot of PC1 and PC2 scores. Also writes two tables. One containing a summary of the PCA analysis and another containing the results of the ANOVA/Tukey analysis
+#' @import ggplot2 dplyr multcomp broom
 #' @export
 #' @examples
 #' Path to raw morphological data
 #' mydata <- "path/to/morpho_data.csv"
 #'
-#' morpho_struct("final_combined_male_raw.csv", type = "species")
+#' morpho_struct("mydata", type = "species")
 
-morpho_struct <- function(input_file, type = "species", colors = NULL, draw_ellipses = FALSE, confidence_level = 0.95) {
+morpho_struct <- function(input_file, type = "species", colors = NULL, draw_ellipses = TRUE, confidence_level = 0.95) {
   # Read the input file as a CSV
   input_data <- read.csv(input_file)
 
