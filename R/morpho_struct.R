@@ -15,7 +15,7 @@
 #' Path to raw morphological data
 #' mydata <- "path/to/morpho_data.csv"
 #'
-#' morpho_struct(mydata, type = "species")
+#' morpho_struct(mydata)
 
 morpho_struct <- function(input_file, type = "species", colors = NULL, draw_ellipses = TRUE, confidence_level = 0.95) {
   # Read the input file as a CSV
@@ -32,6 +32,11 @@ morpho_struct <- function(input_file, type = "species", colors = NULL, draw_elli
     # Perform PCA using prcomp (excluding the first column which is species)
     pca_result <- prcomp(allom_result[, -1], scale. = TRUE)
 
+    # Calculate the percentage of variance explained
+    pca_variance <- summary(pca_result)$importance[2, ]
+    x_variance <- round(pca_variance[1] * 100, 2)
+    y_variance <- round(pca_variance[2] * 100, 2)
+
     # Create a data frame for ggplot2
     pca_data <- data.frame(
       Sample = species,
@@ -43,9 +48,8 @@ morpho_struct <- function(input_file, type = "species", colors = NULL, draw_elli
     # Generate the PCA plot using ggplot2
     pca_plot <- ggplot(pca_data, aes(x = PC1, y = PC2, color = Group)) +
       geom_point(size = 3) +
-      labs(title = paste("PCA of", type, "data"),
-           x = "Principal Component 1",
-           y = "Principal Component 2") +
+      labs(x = paste("PC 1 (", x_variance, "%)", sep = ""),
+           y = paste("PC 2 (", y_variance, "%)", sep = "")) +
       theme_minimal() +
       theme(
         panel.grid.major = element_blank(),
@@ -88,15 +92,7 @@ morpho_struct <- function(input_file, type = "species", colors = NULL, draw_elli
     # Combine the results into a single data frame
     anova_summary <- bind_rows(anova_results)
 
-    # Rename Variables according to names from allom_result
-    variable_names <- names(allom_result)[-1]
-    anova_summary$Variable <- factor(anova_summary$Variable, labels = variable_names)
-
-    # Remove the "term" and "null.value" columns from the anova_summary if they exist
-    anova_summary <- anova_summary %>%
-      select(-contains("term"), -contains("null.value"))
-
-    # Write the ANOVA and Tukey's HSD results to a CSV file
+    # Write all columns of the Tukey HSD results to a CSV file
     write.csv(anova_summary, file = "output_anova.csv")
 
     # Return the PCA results, plot, and ANOVA summary for further analysis if needed
