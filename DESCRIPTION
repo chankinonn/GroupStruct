@@ -12,5 +12,6 @@ LazyData: true
 Imports: 
     dplyr,
     ggplot2,
-    gridExtra
+    gridExtra,
+    broom
 RoxygenNote: 7.2.3
