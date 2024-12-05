@@ -18,8 +18,10 @@
 #' morpho_struct(mydata)
 
 morpho_struct <- function(input_file, type = "species", colors = NULL, draw_ellipses = TRUE, confidence_level = 0.95) {
-  # Read the input file as a CSV
-  input_data <- read.csv(input_file)
+  # Check if input_data is a data.frame
+  if (!is.data.frame(input_data)) {
+    stop("The input_data must be a data frame.")
+  }
 
   # Extract the species column
   species <- input_data[, 1]
@@ -66,6 +68,11 @@ morpho_struct <- function(input_file, type = "species", colors = NULL, draw_elli
     # Apply manual colors if provided
     if (!is.null(colors)) {
       pca_plot <- pca_plot + scale_color_manual(values = colors)
+    }
+
+    # Check to see if number of colors equals number of groups
+    if (!is.null(colors) && length(colors) != length(unique(species))) {
+      stop("Number of colors must match the number of unique groups.")
     }
 
     # Print the PCA plot
