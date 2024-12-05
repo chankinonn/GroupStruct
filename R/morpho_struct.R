@@ -17,7 +17,7 @@
 #'
 #' morpho_struct(mydata)
 
-morpho_struct <- function(input_file, type = "species", colors = NULL, draw_ellipses = TRUE, confidence_level = 0.95) {
+morpho_struct <- function(input_data, type = "species", colors = NULL, draw_ellipses = TRUE, confidence_level = 0.95) {
   # Check if input_data is a data.frame
   if (!is.data.frame(input_data)) {
     stop("The input_data must be a data frame.")
