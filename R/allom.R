@@ -48,62 +48,56 @@
 #' intraspecific variation in the Ringed Snake Natrix natrix (L.). Biological Journal of the Linnaean Society, 7: 27-43
 
 allom <- function(data, type){
+  # Reorder input data alphabetically by first column
+  data <- data[order(data[,1]), ]
 
-  species_list <- as.matrix(unique(data[1]))  ## Create list of unique species
-  finalmatrix <- NULL  ### Create empty matrix and start loop for calculation
+  species_list <- as.matrix(unique(data[,1]))  # Create list of unique species
+  finalmatrix <- vector("list", length(species_list))  # Preallocate list for results
 
-  ### Loop through subsets of species and perform calculations
-  for (i in 1:nrow(species_list)) {
+  # Loop through subsets of species and perform calculations
+  for (i in seq_along(species_list)) {
+    species_subsets <- filter(data, data[,1] == species_list[i])
 
-    ### Create species subsets
-    species_subsets <- filter(data, data[,1]==species_list[i])
-
-    ### Define fx for allometric equation as defined above
-    allo <- function(x){
+    # Define functions for allometric adjustment
+    allo <- function(x) {
       y <- species_subsets[,2]
-      temp <- lm(log10(x)~log10(y), species_subsets)  ### Perform linear regression
-      temp <- as.numeric(temp$coefficients[2]) ### Extract beta coefficient
-      adj <- log10(x)-temp*(log10(y)-log10(mean(y)))  ### equation for interspecies
+      temp <- lm(log10(x) ~ log10(y), species_subsets)  # Linear regression
+      beta <- as.numeric(temp$coefficients[2])  # Extract slope
+      log10(x) - beta * (log10(y) - log10(mean(y)))  # Apply equation
     }
 
-    allo_pop1 <- function(x){
+    allo_pop1 <- function(x) {
       y <- species_subsets[,2]
       z <- mean(data[,2])
-      temp <- lm(log10(x)~log10(y), species_subsets)  ### Perform linear regression, slope=common within groups
-      temp <- as.numeric(temp$coefficients[2]) ### Extract beta coefficient
-      adj <- log10(x)-temp*(log10(y)-log10(z))  ### Plug into equation
+      temp <- lm(log10(x) ~ log10(y), species_subsets)
+      beta <- as.numeric(temp$coefficients[2])
+      log10(x) - beta * (log10(y) - log10(z))
     }
 
-    allo_pop2 <- function(x){
+    allo_pop2 <- function(x) {
       y <- data[,2]
       z <- mean(data[,2])
-      temp <- lm(log10(x)~log10(y), data)  ### Perform linear regression, slope=pooled groups
-      temp <- as.numeric(temp$coefficients[2]) ### Extract beta coefficient
-      adj <- log10(x)-temp*(log10(y)-log10(z))  ### Plug into equation
+      temp <- lm(log10(x) ~ log10(y), data)
+      beta <- as.numeric(temp$coefficients[2])
+      log10(x) - beta * (log10(y) - log10(z))
     }
 
-    ### Loop through each species subset and apply fx from column 3 onwards; store results in "final"
-    if(type == "species"){
-
+    # Apply the appropriate function based on 'type'
+    if (type == "species") {
       finalmatrix[[i]] <- apply(species_subsets[,3:ncol(species_subsets)], 2, allo)
-
-    }
-
-    if(type =="population1"){
+    } else if (type == "population1") {
       finalmatrix[[i]] <- apply(species_subsets[,3:ncol(species_subsets)], 2, allo_pop1)
-
-    }
-
-    if(type =="population2"){
+    } else if (type == "population2") {
       finalmatrix[[i]] <- apply(data[,3:ncol(data)], 2, allo_pop2)
-
     }
   }
 
-  ### Combine output, log-transform, and write to table
-  logsize <- log10(data[2])
-  all_combined <- cbind(logsize, do.call(rbind, finalmatrix)) ### Combine results from loop and bind the column "SVL"
-  final_adjusted <- data.frame(cbind(data[1], all_combined)) ### Bind the column "Species" to the final dataset
+  # Combine output, log-transform, and write to table
+  logsize <- log10(data[,2])
+  all_combined <- cbind(logsize, do.call(rbind, finalmatrix))  # Bind results
+  final_adjusted <- data.frame(cbind(data[,1], all_combined))  # Bind species column
+
+  # Write output
   write.csv(final_adjusted, "allom_outfile.csv", row.names = FALSE)
   print(final_adjusted)
 }
