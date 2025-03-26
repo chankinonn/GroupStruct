@@ -97,6 +97,9 @@ allom <- function(data, type){
   all_combined <- cbind(logsize, do.call(rbind, finalmatrix))  # Bind results
   final_adjusted <- data.frame(cbind(data[,1], all_combined))  # Bind species column
 
+  # Preserve original column names
+  colnames(final_adjusted) <- colnames(data)
+
   # Write output
   write.csv(final_adjusted, "allom_outfile.csv", row.names = FALSE)
   print(final_adjusted)
